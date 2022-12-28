@@ -11,6 +11,8 @@ foreach ($branch in $branches) {
 # Get the commit hash of the latest active branch
 $latest_active_branch = git rev-parse --abbrev-ref HEAD
 
+Write-Output "last active branch $latest_active_branch"
+
 $branches_merged_to_latest_active_branch = git for-each-ref --merged=$latest_active_branch refs/remotes/
 
 $branches_to_check = @()
@@ -19,6 +21,9 @@ foreach ($branch in $branches_merged_to_latest_active_branch) {
   $result = $branch -split "refs/remotes/" | Select-Object -Index 1
   $branches_to_check += $result
 }
+
+Write-Output "branches inside last active branch: "
+Write-Output $branches_to_check
 
 # Compare the commit history of each branch with the latest active branch
 # and add the branches to a list if they have no new commits and are not in the ignore list
