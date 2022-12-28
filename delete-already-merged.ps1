@@ -38,6 +38,7 @@ if ($args -contains "-delete") {
 }
 else {
   # Add the branches to a shared spreadsheet (you will need to modify this to fit your specific spreadsheet setup)
+  Write-Output $branches_to_review
   $branches_to_review | Out-File branches_to_review.txt -Encoding utf8 -Append
 }
 
