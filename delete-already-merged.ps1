@@ -8,8 +8,10 @@ $trimmed_branches = @()
 foreach ($branch in $branches) {
   $trimmed_branches += $branch.Line.Trim()
 }
-# Get the commit hash of the latest active branch
-$latest_active_branch = git rev-parse --abbrev-ref HEAD
+# Get the commit hash of the latest active dev or canary branch
+$dev_or_canary_branches = git branch -r | Select-String -Pattern '^.*(dev|canary).*$' -Match
+$sorted_branches = $dev_or_canary_branches | Sort-Object { (git show-ref -s --date=raw $($_.Line)) } -Descending
+$latest_active_branch = $sorted_branches[0].Line
 
 Write-Output "last active branch $latest_active_branch"
 
