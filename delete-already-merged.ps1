@@ -1,3 +1,5 @@
+Import-Module Microsoft.PowerShell.Utility
+
 # Read the contents of the branch ignore file into a variable
 $ignore_list = Get-Content -Path branch_ignore.txt
 
