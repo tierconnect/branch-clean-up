@@ -12,9 +12,8 @@ foreach ($branch in $branches) {
 # Get the commit hash of the latest active dev or canary branch
 $dev_branches = git for-each-ref --sort='-committerdate' --format='%(refname:short)' refs/remotes | Where-Object { $_ -match '^.*(/dev/).*$' }
 $canary_branches = git for-each-ref --sort='-committerdate' --format='%(refname:short)' refs/remotes | Where-Object { $_ -match '^.*(/canary/).*$' }
-
-Write-Output $dev_branches
-Write-Output $canary_branches
+$remote_branches = git for-each-ref --sort='-committerdate' --format='%(refname:short)' refs/remotes
+Write-Output $remote_branches
 
 $latest_active_branches = @($dev_branches[0].Trim(), $canary_branches[0].Trim())
 
