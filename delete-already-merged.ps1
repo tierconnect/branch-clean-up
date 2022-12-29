@@ -13,6 +13,9 @@ foreach ($branch in $branches) {
 $dev_branches = git for-each-ref --sort='-committerdate' --format='%(refname:short)' refs/remotes | Where-Object { $_ -match '^.*(/dev/).*$' }
 $canary_branches = git for-each-ref --sort='-committerdate' --format='%(refname:short)' refs/remotes | Where-Object { $_ -match '^.*(/canary/).*$' }
 
+Write-Output $dev_branches
+Write-Output $canary_branches
+
 $latest_active_branches = @($dev_branches[0].Trim(), $canary_branches[0].Trim())
 
 Write-Output "last active branch $latest_active_branches"
