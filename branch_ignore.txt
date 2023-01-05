@@ -3,4 +3,3 @@ master
 origin/feature/automation
 origin/feature_5.x.x_OWASP
 origin/feature_turkish
-origin/https/github.com/tierconnect/retail-mobile.git
