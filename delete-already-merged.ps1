@@ -45,7 +45,7 @@ foreach ($latest in $latest_active_branches) {
         git push origin --delete $branch -Replace 'origin/', ''
       }
     }
-    else {-
+    else {
       # Add the branches to a shared spreadsheet (you will need to modify this to fit your specific spreadsheet setup)
       Write-Output "branches that will be deleted: "
       Write-Output $branches_to_review
